@@ -79,9 +79,14 @@
 \begin{document}
 \pagenumbering{gobble}
 
-%%%% 如果不需要照片，可将下面的tikz代码注释掉
+%%%% 右上角个人照片
 \begin{tikzpicture}[remember picture, overlay] 
-    \node[anchor = north east] at ($(current page.north east)+(-2cm,-1.2cm)$) {\includegraphics[height=3cm]{avatar.jpg}};
+    \node[anchor = north east] at ($(current page.north east)+(-2cm,-1.2cm)$) {\includegraphics[height=3cm]{pic.jpg}};
+\end{tikzpicture}%
+
+%%%% 左上角学校 Logo (浙大校徽)
+\begin{tikzpicture}[remember picture, overlay] 
+    \node[anchor = north west] at ($(current page.north west)+(0.5cm,+1.0cm)$) {\includegraphics[height=6cm]{zju.png}};
 \end{tikzpicture}%
 
 \centerline{\LARGE\bfseries{张连昊}} 
