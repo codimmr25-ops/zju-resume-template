@@ -1,6 +1,5 @@
 \documentclass[11pt]{article}
 
-
 \setlength{\parindent}{0pt}
 \usepackage{xltxtra}
 \usepackage{hyperref}
@@ -18,7 +17,6 @@
 \usepackage{enumitem}
 \CJKsetecglue{} %% 取消中文与数字之间的间隙
 
-
 %% 主文档字体设置
 \setmainfont[
     Path = fonts/Main/,
@@ -33,11 +31,8 @@
     BoldFont = NotoSansSC-Bold.ttf, % 加粗字体
 ]{NotoSansSC-Regular.otf} % 正文字体
 
-
 \usepackage{relsize}
 \usepackage{xspace}
-
-% 使用 fontawesome（部分图标）
 \usepackage{fontawesome} 
 
 % A4纸，上下左右边距
@@ -54,102 +49,94 @@
 
 \usepackage{titlesec}
 \usepackage{enumitem}
-\setlist{noitemsep} % 取消列表项间的额外间距
-%\setlist{nosep} % 取消所有垂直间距
+\setlist{noitemsep} 
 \setlist[itemize]{topsep=0.25em, leftmargin=*}
 \setlist[enumerate]{topsep=0.25em, leftmargin=*}
 
 % --- 用于控制【不同项目之间】的垂直距离 ---
 \newlength{\interProjectSpacing}
-\setlength{\interProjectSpacing}{0.9em} % <--- 在此调整项目之间的距离
+\setlength{\interProjectSpacing}{0.9em} 
 \newcommand{\projectsep}{\vspace{\interProjectSpacing}}
 
 % --- 用于控制【项目标题】与下方【项目描述】的距离 ---
 \newlength{\intraProjectTitleSep}
-\setlength{\intraProjectTitleSep}{0.4em} % <--- 在此调整标题和描述的距离
+\setlength{\intraProjectTitleSep}{0.4em} 
 \newcommand{\titlebreak}{\\[\intraProjectTitleSep]}
 
 % --- 用于控制【项目描述】与下方【要点列表】的距离 ---
 \newlength{\intraProjectListTopSep}
-\setlength{\intraProjectListTopSep}{0.2em} % <--- 在此调整描述和列表的距离
+\setlength{\intraProjectListTopSep}{0.2em} 
 
 % =======================================================================
 
-
-\titleformat{\section}         % 定制 \section 命令 
-{\large\bfseries\raggedright} % 将 section 标题设置为大号、粗体且左对齐
-{}{0em}                      % 可用于为所有 section 添加前缀（如“章节...”）
-{}                           % 可用于在标题前插入代码
-[{\color{CVBlue}\titlerule}]  % 在标题后插入一条横线
+\titleformat{\section}         
+{\large\bfseries\raggedright} 
+{}{0em}                      
+{}                           
+[{\color{CVBlue}\titlerule}]  
 \titlespacing*{\section}{0cm}{*1.6}{*1.2}
-
-
 
 \begin{document}
 \pagenumbering{gobble}
 
-%%%% 利用tikz来定位照片
+%%%% 如果不需要照片，可将下面的tikz代码注释掉
 \begin{tikzpicture}[remember picture, overlay] 
     \node[anchor = north east] at ($(current page.north east)+(-2cm,-1.2cm)$) {\includegraphics[height=3cm]{avatar.jpg}};
-  \end{tikzpicture}%
-  %%%% 利用tikz来定位学校Logo，这里只在第一页显示
-  \begin{tikzpicture}[remember picture, overlay] 
-    \node[anchor = north west] at ($(current page.north west)+(0.5cm,+1.0cm)$) {\includegraphics[height=6cm]{zju.png}};
-  \end{tikzpicture}%
-\centerline{\LARGE\bfseries{张小昊}} 
+\end{tikzpicture}%
 
-\centerline{\normalsize{\faPhone\ 111-1111-1111 \quad \faEnvelopeO\ \href{mailto:3230100000@zju.edu.cn}{3230100000@zju.edu.cn}}} 
-
-\centerline{\normalsize{\faGithubSquare\ \href{https://github.com/maksymilan}{https://github.com/maksymilan} \quad \faRssSquare\ \href{https://maksymilan.github.io/}{https://maksymilan.github.io}}} 
+\centerline{\LARGE\bfseries{张连昊}} 
+\vspace{0.5em}
+\centerline{\normalsize{\faPhone\ 18954469521 \quad \faEnvelopeO\ \href{mailto:18954469521@163.com}{18954469521@163.com}}} 
+\vspace{1em}
     
-\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}    
-\textbf{浙江大学} \hfill 2023.9 -- 至今\\[0.5em] % 标题和正文间加一点距离
-CC98烂坑挖掘工程与技术\quad 大二 
+\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}   
+\textbf{浙江大学} \hfill 2025.09 -- 至今\\[0.5em] 
+信息与电子工程学院 \quad 电子信息专业\quad 硕士在读 
 \begin{itemize}[nosep]
-    \item 相关课程：《烂坑挖掘及基础》、《高级挖坑技巧》、《烂坑数理统计》
+    \item \textbf{相关课程：}机器学习、深度学习、推荐系统架构、最优化理论与方法、高级算法设计等
 \end{itemize}
 
-\section{\makebox[\widthof{\faUsers}][c]{\color{CVBlue}\faUsers}\ 项目经历}
+\vspace{0.5em}
+
+\textbf{山东大学} \hfill 2021.09 -- 2025.06\\[0.5em] 
+电子科学与技术专业\quad 本科 \quad \textbf{GPA: 87.1/100 (专业前25\%)}
+
+\section{\makebox[\widthof{\faCogs}][c]{\color{CVBlue}\faCogs}\ 专业技能}
+\begin{itemize}[nosep]
+    \item \textbf{编程语言：}熟练掌握 Python（具备扎实的算法数据结构基础，熟悉 NumPy, Pandas），熟悉 C/C++。
+    \item \textbf{算法与模型：}熟练使用 PyTorch 深度学习框架；熟悉大语言模型微调（SFT, RLHF/GRPO）及 Transformers 架构；深入理解并能落地主流推荐算法（多路召回、基于树模型/深度学习的排序模型）。
+    \item \textbf{工程与大数据：}熟练使用 RAPIDS cuDF 进行大规模数据 GPU 加速处理；熟悉 FAISS 向量检索库、Accelerate 分布式推理；熟悉 Linux 系统及 Git 版本控制。
+\end{itemize}
+
+\section{\makebox[\widthof{\faUsers}][c]{\color{CVBlue}\faUsers}\ 核心项目经历}
 
 % --- 第一个项目 ---
-% 将标题行末尾的 \\ 替换为 \titlebreak 命令
-\textbf{98烂坑风控与可视化作战平台} \hfill 2024.08 -- 至今 \titlebreak
-项目描述：为维护cc98社区的讨论纯度、净化“心灵之约”版块风气，本项目旨在对“烂坑”进行科学、严谨的量化分析，并引入\textbf{大语言模型(LLM)}对烂坑帖进行\textbf{自动化情感极性与“离谱指数”标注}。
-% 在 itemize 的选项中，使用 topsep=\intraProjectListTopSep 来控制上边距
+\textbf{MiniOneRec - 端到端生成式推荐系统框架 (个人核心 / 开源项目)} \hfill 核心算法开发 \titlebreak
+\textbf{项目背景}：针对传统推荐系统冷启动困难及多模态语义融合效果差的问题，突破直接引入 LLM 存在庞大词表导致生成效率低下和“幻觉”商品的痛点。
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
-    \item \textbf{数据与后端}：运用 \textbf{Go} 语言及 \textbf{GORM} 框架，实现对全站“烂坑”帖的7x24小时全天候\textbf{抓取}与\textbf{入库}(MySQL)。
-    \item \textbf{可视化前端}：采用原生 \textbf{HTML/CSS/JS} 构建了“烂坑”实时监控\textbf{作战大屏}。实现了坑主成分分析、挖坑热力图、年度烂坑王榜单等\textbf{可视化图表}，并通过 \textbf{AJAX} 异步刷新，确保数据洞察的实时性。
-    \item \textbf{核心产出}：全面掌握了从\textbf{数据采集、清洗、LLM标注到可视化分析}的“反烂坑”全链路技术。
+    \item \textbf{表征构建 (语义量化)}：采用文本编码器提取多模态特征，应用多级 RQ-VAE / RQ-Kmeans 算法对百万级候选物品进行量化，构建定长层级化语义 ID (SID) 有效缓解稀疏性；引入 Accelerate 实现多 GPU 并行推理提效。
+    \item \textbf{指令对齐微调 (SFT)}：将时间序列交互历史转化为语言 Token，利用 Causal LM 进行序列推荐微调；创新引入语言对齐目标与价值感知微调 (VAFT)，使模型兼具外部世界知识并与离散 ID 空间高效对齐。
+    \item \textbf{策略对齐强化 (RL \& GRPO)}：弃用高显存占用的 PPO Critic 网络，设计基于 GRPO 的强化学习。通过组内相对 Reward 稳定梯度，并融合正确率、排序置信度 (Rank-aware) 与 CF 分数构建混合奖励信号。
+    \item \textbf{受限解码与项目成果}：开发定制化 LogitProcessor，在 Beam Search 阶段实施前缀树约束的受限解码强制切断非法路径。成功构建首个开源生成式推荐流水线，确保输出 SID 100\% 唯一合法，推理侧“幻觉”降至零，HR@K 及 NDCG@K 指标显著提升。
 \end{itemize}
 
-% 使用 \projectsep 命令来分隔两个项目
 \projectsep
 
 % --- 第二个项目 ---
-\textbf{AIGC驱动的超进化自动挖坑机 (Agent)} \hfill 2025.02 -- 至今 \titlebreak
-项目描述：为探索心灵版规的边界，以及测试版主锁沉反应速度的极限，本项目基于\textbf{多智能体协作(MCP)与LLM}技术，开发了一款能\textbf{自主“挖坑”与“互坑”}的AI Agent。
+\textbf{面向 OTTO 电商平台的大规模用户行为预测} \hfill 算法与特征工程 \titlebreak
+\textbf{项目背景}：在 1200 万+ 匿名会话、180 万+ 商品的大规模数据集上，精准预测每位用户的点击、加购、下单行为并分别推荐 Top-20 商品。
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
-    \item \textbf{并发与调度}：后端采用 \textbf{Go} 语言，充分利用 \textbf{Goroutine} 和 \textbf{Channel} 的高并发模型，模拟\textbf{用户并发在线}，执行定时挖坑，确保挖坑行动的\textbf{隐蔽性}与\textbf{高效性}。
-    \item \textbf{实时监控与响应}：运用 \textbf{WebSocket} 协议实现了对目标帖子的\textbf{实时监听与交互}。确保在烂坑被识破的第一时间，Agent能光速完成\textbf{“lktp”}或\textbf{反向钓鱼}操作，展现出极高的AI博弈能力。
-    \item \textbf{可视化GUI}：前端使用 \textbf{React} 框架构建了\textbf{后台管理的可视化面板 (Admin Panel)}。可一键下达挖坑指令、动态调整Agent的\textbf{指令}、并实时监控数据。
+    \item \textbf{多路召回设计}：构建 20 种共访矩阵（All/Buy/Click-to-Buy 等），创新性引入指数时间衰减权重 $w=(1/2)^{|\Delta t|/3600}$，精准捕获时间敏感特征，为每位用户高效召回 100 个高质量候选商品。
+    \item \textbf{特征工程与树模型排序}：深度构建 100+ 维特征，涵盖共访矩阵分数、商品/用户侧多维度统计及多时间窗口聚合；分别训练 Click/Cart/Order 三个 XGBoost 二分类模型，采用 40\% 负样本下采样与严格时间切分（前 3.5 周训练，后 1 周验证）有效避免数据泄漏。
+    \item \textbf{GPU 工程优化落地}：全流程基于 RAPIDS cuDF 实现 GPU 极速运算，使得共访矩阵计算获得 30 倍性能飞跃；采用分块计算结合 Parquet 列式存储及主动内存回收策略，在单机 256GB RAM + 32GB GPU 环境下成功跑通端到端亿级数据流水线。
 \end{itemize}
 
-\section{\makebox[\widthof{\faCogs}][c]{\color{CVBlue}\faCogs}\ 技术栈}
+\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faList}\ 荣誉奖项}
 \begin{itemize}[nosep]
-    \item \textbf{编程语言：} \textbf{Go}, Python, C++
-    \item \textbf{开发工具：} SSH, Git, Vim, MakeFile,LaTex
-    \item \textbf{操作系统：} Linux
+    \item 全国大学生数学建模竞赛 \textbf{省一等奖}（主导核心数学建模与机器学习数据分析） \hfill 
+    \item 美国大学生数学建模竞赛 \textbf{H等奖 (Honorable Mention)} \hfill 
+    \item 全国大学生数学竞赛 \textbf{省一等奖} \hfill 
+    \item 山东大学学业三等奖学金 （连续两次） \hfill 
 \end{itemize}
-\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faList}\ 获奖情况}
-\begin{itemize}
-    \item CC98年度用户 \hfill 2023.12
-    
-\end{itemize}
-    
-\section{\makebox[\widthof{\faInfo}][c]{\color{CVBlue}\faInfo}\ 其他}
-\begin{itemize}[parsep=0.5ex]
-    \item \textbf{技术博客：} \href{https://maksymilan.github.io/}{https://maksymilan.github.io/}
-    \item \textbf{GitHub：} \href{https://github.com/maksymilan}{https://github.com/maksymilan} 
-    \item \textbf{英语水平：} CET-4, CET-6
-\end{itemize}
+
 \end{document}
