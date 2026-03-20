@@ -98,7 +98,7 @@
 \textbf{浙江大学} \hfill 2025.09 -- 至今\\[0.5em] 
 信息与电子工程学院 \quad 电子信息专业\quad 硕士在读 
 \begin{itemize}[nosep]
-    \item \textbf{相关课程：}机器学习、深度学习、推荐系统架构、最优化理论与方法、高级算法设计等
+    \item \textbf{相关课程：}机器学习、深度学习、推荐系统架构等
 \end{itemize}
 
 \vspace{0.5em}
@@ -117,23 +117,23 @@
 
 % --- 第一个项目 ---
 \textbf{MiniOneRec - 端到端生成式推荐系统框架 (个人核心 / 开源项目)} \hfill 核心算法开发 \titlebreak
-\textbf{项目背景}：针对传统推荐系统冷启动困难及多模态语义融合效果差的问题，突破直接引入 LLM 存在庞大词表导致生成效率低下和“幻觉”商品的痛点。
+\textbf{项目背景}：针对传统推荐系统冷启动困难及多模态语义融合效果差的问题，突破直接引入 LLM 存在庞大词表导致生成效率低下和推荐“幻觉”的痛点。
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
-    \item \textbf{表征构建 (语义量化)}：采用文本编码器提取多模态特征，应用多级 RQ-VAE / RQ-Kmeans 算法对百万级候选物品进行量化，构建定长层级化语义 ID (SID) 有效缓解稀疏性；引入 Accelerate 实现多 GPU 并行推理提效。
-    \item \textbf{指令对齐微调 (SFT)}：将时间序列交互历史转化为语言 Token，利用 Causal LM 进行序列推荐微调；创新引入语言对齐目标与价值感知微调 (VAFT)，使模型兼具外部世界知识并与离散 ID 空间高效对齐。
-    \item \textbf{策略对齐强化 (RL \& GRPO)}：弃用高显存占用的 PPO Critic 网络，设计基于 GRPO 的强化学习。通过组内相对 Reward 稳定梯度，并融合正确率、排序置信度 (Rank-aware) 与 CF 分数构建混合奖励信号。
-    \item \textbf{受限解码与项目成果}：开发定制化 LogitProcessor，在 Beam Search 阶段实施前缀树约束的受限解码强制切断非法路径。成功构建首个开源生成式推荐流水线，确保输出 SID 100\% 唯一合法，推理侧“幻觉”降至零，HR@K 及 NDCG@K 指标显著提升。
+    \item \textbf{表征构建 (语义量化)}：采用文本编码器提取多模态特征，应用多级 RQ-VAE / Constrained RQ-Kmeans 算法对百万级候选物品进行量化，构建定长、均匀分布的层级化语义 ID (SID)，有效缓解特征稀疏性；引入 Accelerate 实现多 GPU 并行推理，特征提取效率提升 300%。
+    \item \textbf{指令对齐微调 (SFT)}：将用户时间序列交互历史转化为语言 Token，利用自回归大模型（如 Qwen2.5-base）进行序列推荐微调；创新引入语言对齐目标与价值感知微调 (VAFT)，使模型兼具外部世界知识并与离散 ID 空间高效对齐。
+    \item \textbf{策略对齐强化 (RL \& GRPO)}：弃用高显存占用的 PPO Critic 网络，设计基于 GRPO 的轻量级强化学习。通过组内相对 Reward 稳定梯度，并融合二元正确率、排序置信度 (Rank-aware 惩罚) 与 CF 分数构建混合奖励信号，打破历史曝光偏差。
+    \item \textbf{受限解码与项目成果}：开发定制化 LogitProcessor，在 Beam Search 阶段实施前缀树 (Trie) 约束的受限解码，利用负无穷掩码强制切断非法路径。确保输出 SID 100% 唯一合法，推理侧无效生成 (CC 指标) 降至 0；最终在 Amazon 数据集上，相比传统序列基线模型，HR@10 相对提升 15.6%，NDCG@10 显著提升 18.2%，实现了高性能的精排推荐。
 \end{itemize}
 
 \projectsep
 
 % --- 第二个项目 ---
 \textbf{面向 OTTO 电商平台的大规模用户行为预测} \hfill 算法与特征工程 \titlebreak
-\textbf{项目背景}：在 1200 万+ 匿名会话、180 万+ 商品的大规模数据集上，精准预测每位用户的点击、加购、下单行为并分别推荐 Top-20 商品。
+\textbf{项目背景}：在包含 1.64 亿条交互日志、1100 万+ 匿名会话及 180 万+ 商品的超大规模数据集上，精准预测用户的点击、加购、下单行为，并为每位用户输出 Top-20 推荐列表。
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
     \item \textbf{多路召回设计}：构建 20 种共访矩阵（All/Buy/Click-to-Buy 等），创新性引入指数时间衰减权重 $w=(1/2)^{|\Delta t|/3600}$，精准捕获时间敏感特征，为每位用户高效召回 100 个高质量候选商品。
     \item \textbf{特征工程与树模型排序}：深度构建 100+ 维特征，涵盖共访矩阵分数、商品/用户侧多维度统计及多时间窗口聚合；分别训练 Click/Cart/Order 三个 XGBoost 二分类模型，采用 40\% 负样本下采样与严格时间切分（前 3.5 周训练，后 1 周验证）有效避免数据泄漏。
-    \item \textbf{GPU 工程优化落地}：全流程基于 RAPIDS cuDF 实现 GPU 极速运算，使得共访矩阵计算获得 30 倍性能飞跃；采用分块计算结合 Parquet 列式存储及主动内存回收策略，在单机 256GB RAM + 32GB GPU 环境下成功跑通端到端亿级数据流水线。
+    \item \textbf{GPU 工程优化落地}：全流程基于 RAPIDS cuDF 实现 GPU 极速运算，使得共访矩阵计算获得 30 倍性能飞跃；采用分块计算结合 Parquet 列式存储及主动内存回收策略，在单机 256GB RAM + 32GB GPU 环境下成功跑通端到端亿级数据流水线。在受限算力下，XGBoost 单模型稳健达到 0.601 的打榜成绩；最终运用差异化树结构特性，将 XGBoost 与 CatBoost 的输出概率进行线性加权融合，有效降低高维方差，在 Kaggle 线上 Leaderboard 斩获 0.604 的高分表现。
 \end{itemize}
 
 \section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faList}\ 荣誉奖项}
