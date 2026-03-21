@@ -35,76 +35,77 @@
 \usepackage{xspace}
 \usepackage{fontawesome} 
 
-% A4纸，上下左右边距
+% 【再次压缩】页面上下边距缩减 (top从1.5缩至1.0，bottom从1.0缩至0.6)
 \usepackage[
     a4paper,
     left=1.2cm,
     right=1.2cm,
-    top=1.5cm,
-    bottom=1cm,
+    top=1.0cm,
+    bottom=0.6cm,
     nohead
 ]{geometry}
 
-% 【修改点1】行间距设为1.2，压缩全局高度
-\renewcommand{\baselinestretch}{1.2} 
+% 【再次压缩】全局行距设为1.1
+\renewcommand{\baselinestretch}{1.1} 
 
 \usepackage{titlesec}
 \usepackage{enumitem}
 \setlist{noitemsep} 
-\setlist[itemize]{topsep=0.25em, leftmargin=*}
-\setlist[enumerate]{topsep=0.25em, leftmargin=*}
+% 【再次压缩】列表上方的额外空间取消
+\setlist[itemize]{topsep=0.1em, leftmargin=*}
+\setlist[enumerate]{topsep=0.1em, leftmargin=*}
 
-% 【修改点2】控制不同项目之间的垂直距离缩小
+% 【再次压缩】不同大段项目之间的垂直距离缩小
 \newlength{\interProjectSpacing}
-\setlength{\interProjectSpacing}{0.5em} 
+\setlength{\interProjectSpacing}{0.3em} 
 \newcommand{\projectsep}{\vspace{\interProjectSpacing}}
 
-% 控制项目标题与下方项目描述的距离
+% 【再次压缩】项目标题与下方描述的距离
 \newlength{\intraProjectTitleSep}
-\setlength{\intraProjectTitleSep}{0.4em} 
+\setlength{\intraProjectTitleSep}{0.2em} 
 \newcommand{\titlebreak}{\\[\intraProjectTitleSep]}
 
 % 控制项目描述与下方要点列表的距离
 \newlength{\intraProjectListTopSep}
-\setlength{\intraProjectListTopSep}{0.2em} 
+\setlength{\intraProjectListTopSep}{0.1em} 
 
 % =======================================================================
-% 【修改点3】压缩 Section 标题的上下间距
+% 【再次压缩】Section 大标题的上下间距
 \titleformat{\section}         
 {\large\bfseries\raggedright} 
 {}{0em}                      
 {}                           
 [{\color{CVBlue}\titlerule}]  
-\titlespacing*{\section}{0cm}{*1.2}{*0.8}
+\titlespacing*{\section}{0cm}{*0.8}{*0.5}
 
 \begin{document}
 \pagenumbering{gobble}
 
-%%%% 右上角个人照片 (如果不需要可注释掉)
+%%%% 右上角个人照片
 \begin{tikzpicture}[remember picture, overlay] 
-    \node[anchor = north east] at ($(current page.north east)+(-2cm,-1.2cm)$) {\includegraphics[height=3cm]{pic.jpg}};
+    \node[anchor = north east] at ($(current page.north east)+(-2cm,-1.0cm)$) {\includegraphics[height=3cm]{pic.jpg}};
 \end{tikzpicture}%
 
 %%%% 左上角学校 Logo 
 \begin{tikzpicture}[remember picture, overlay] 
-    \node[anchor = north west] at ($(current page.north west)+(0.5cm,+1.0cm)$) {\includegraphics[height=6cm]{zju.png}};
+    \node[anchor = north west] at ($(current page.north west)+(0.5cm,+0.8cm)$) {\includegraphics[height=6cm]{zju.png}};
 \end{tikzpicture}%
 
 \centerline{\LARGE\bfseries{张连昊}} 
-\vspace{0.5em}
+\vspace{0.3em} % 【再次压缩】名字下方的间距
 \centerline{\normalsize{\faPhone\ 18954469521 \quad \faEnvelopeO\ \href{mailto:18954469521@163.com}{18954469521@163.com}}} 
-\vspace{1em}
+\vspace{0.6em} % 【再次压缩】联系方式下方的间距
     
 \section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}   
-\textbf{浙江大学} \hfill 2025.09 -- 至今\\[0.3em] 
+\textbf{浙江大学} \hfill 2025.09 -- 至今\\[0.1em] 
 信息与电子工程学院 \quad 电子信息专业\quad 硕士在读 
 \begin{itemize}[nosep]
     \item \textbf{相关课程：}机器学习、深度学习、推荐系统架构、自然语言处理与大模型、分布式系统与并行计算。
 \end{itemize}
 
-\vspace{0.5em}
+\vspace{0.3em}
 
-\textbf{山东大学} \hfill 2021.09 -- 2025.06\\[0.3em] 
+\textbf{山东大学} \hfill 2021.09 -- 2025.06\\[0.1em] 
 电子科学与技术专业\quad 本科 \quad \textbf{GPA: 87.1/100 (专业前25\%)}
 \begin{itemize}[nosep]
     \item \textbf{相关课程：}C/C++程序设计、数据结构与算法、电磁场与微波技术、线性代数、概率论与数理统计。
@@ -141,7 +142,7 @@
 \end{itemize}
 
 \section{\makebox[\widthof{\faGroup}][c]{\color{CVBlue}\faGroup}\ 校园经历}
-\textbf{校研究生代表大会 / 德育中心} \hfill 2025.09 -- 至今\\[0.3em]
+\textbf{校研究生代表大会 / 德育中心} \hfill 2025.09 -- 至今\\[0.1em]
 \textbf{学生骨干 / 助理} \hfill 
 \begin{itemize}[nosep]
     \item 担任研博会骨干成员及德育中心助理，协助策划与组织多项校园学术与文体活动，提升团队跨部门协作与统筹规划能力。
