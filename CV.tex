@@ -122,10 +122,10 @@
 \textbf{MiniOneRec - 端到端生成式推荐系统框架 (个人核心 / 开源项目)} \hfill 核心算法开发 \titlebreak
 \textbf{项目背景}：针对传统推荐系统冷启动及多模态语义融合痛点，解决直接引入 LLM 存在大词表导致生成效率低下和推荐“幻觉”的问题。
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
-    \item \textbf{表征构建}：应用多级 RQ-VAE 算法量化百万级候选物品，构建层级化语义 ID (SID)，缓解特征稀疏性；引入 Accelerate 多 GPU 推理，\textbf{效率提升 300\%}。
-    \item \textbf{SFT 微调}：将用户交互历史转化为 Token，利用 Qwen2.5 进行序列推荐微调；引入价值感知微调 (VAFT)，使大模型外部知识与离散 ID 高效对齐。
-    \item \textbf{RL 对齐}：设计基于 \textbf{GRPO} 的轻量级强化学习，融合排序置信度与 CF 分数构建混合奖励信号稳定梯度，有效打破历史曝光偏差。
-    \item \textbf{项目成果}：开发 LogitProcessor 实施 Trie 约束解码，\textbf{无效生成降至 0}。在 Amazon 数据集上，相比基线模型，\textbf{HR@10 提升 15.6\%，NDCG@10 提升 18.2\%}。
+    \item \textbf{SID 表征}：复现并优化 \textbf{RQ-Kmeans+} 语义 ID 构建，在 Office\_Products 3,459 个商品上生成 3/4 层 SID，最终索引 \textbf{0 碰撞}。
+    \item \textbf{SFT 微调}：基于 \textbf{Qwen2.5-7B + LoRA} 构建生成式序列推荐，将用户历史、商品标题与 SID 词表联合建模；支持冻结 LLM、仅训练新增 SID embedding 等低成本策略。
+    \item \textbf{约束生成与对齐}：实现 LogitProcessor/Trie 前缀约束解码，并复用于评估、GRPO 与 DPO 候选生成，保证预测 SID 合法率 \textbf{100\%}，将无效推荐降至 0。
+    \item \textbf{实验闭环}：完成 4 张 H200 上 SFT 到 GRPO 的训练评估；当前最优 SFT 达到 \textbf{HR@10 0.1697}、\textbf{NDCG@10 0.1279}，并定位非严格续训与 reward 过强带来的回落。
 \end{itemize}
 
 \projectsep
